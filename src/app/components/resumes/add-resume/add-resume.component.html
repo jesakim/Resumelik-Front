@@ -1,0 +1,64 @@
+<div class="card card-frame h-100">
+    <div class="card-body d-flex justify-content-center align-items-center">
+    <button class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center" style="height: 100px;width: 100px;"  data-bs-toggle="modal" data-bs-target="#addPatient">
+        <i class="fa-solid fa-plus text-white fs-1"></i>
+    </button>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addPatient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" role="dialog">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Resume</h5>
+        <button type="button" class="btn btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="addResumeForm" (ngSubmit)="addResume()">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+                <div *ngIf="addResumeForm.get('name')?.hasError('required') && (addResumeForm.get('name')?.dirty || addResumeForm.get('name')?.touched)" class="text-danger  text-sm">
+                    Name is required
+                </div>
+                <div *ngIf="addResumeForm.get('name')?.hasError('minlength') && (addResumeForm.get('name')?.dirty || addResumeForm.get('name')?.touched)" class="text-danger text-sm">
+                    Name must be at least 10 characters
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                <div *ngIf="addResumeForm.get('firstName')?.hasError('required') && (addResumeForm.get('firstName')?.dirty || addResumeForm.get('firstName')?.touched)" class="text-danger  text-sm">
+                    First Name is required
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                <p *ngIf="addResumeForm.get('lastName')?.hasError('required') && (addResumeForm.get('lastName')?.dirty || addResumeForm.get('lastName')?.touched)" class="text-danger  text-sm">
+                    Last Name is required
+                </p>
+            </div>
+            <div class="mb-3">
+                <label for="picture" class="form-label">Picture</label>
+                <input type="text" class="form-control" id="picture" formControlName="picture">
+                <div *ngIf="addResumeForm.get('picture')?.hasError('required') && (addResumeForm.get('picture')?.dirty || addResumeForm.get('picture')?.touched)" class="text-danger  text-sm">
+                    Picture is required
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" formControlName="title">
+                <div *ngIf="addResumeForm.get('title')?.hasError('required') && (addResumeForm.get('title')?.dirty || addResumeForm.get('title')?.touched)" class="text-danger  text-sm">
+                    Title is required
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary m-0">Save</button>
+        </div>
+    </form>
+    </div>
+</div>
+</div>

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from './store/states/app.state';
+import { failureAction } from './store/actions/failure.action';
 
 @Component({
   selector: 'app-root',

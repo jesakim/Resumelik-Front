@@ -1,0 +1,19 @@
+<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <div class="d-flex pt-2 pe-2 ">
+        <div class="ms-auto cursor-pointer nav-link p-0 d-xl-none" id="iconNavbarSidenav" (click)="pinSidenav()">
+            <i class="fa-solid fa-xmark fs-4"></i>
+          </div>
+    </div>
+    <div class="collapse navbar-collapse w-auto show" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngFor="let SidebarItem of SidebarItems">
+            <a class="nav-link {{SidebarItem.active ? 'active' : '' }}" [routerLink]="['/', 'resumes',slug, SidebarItem.link]">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid {{ SidebarItem.icon }} mb-1 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">{{ SidebarItem.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>

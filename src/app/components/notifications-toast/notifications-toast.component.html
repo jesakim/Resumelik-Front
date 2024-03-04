@@ -1,0 +1,18 @@
+<div class="ctoast {{isShowed ? 'active' : ''}}" style="--toast-color: {{isError ? '#f5365c':'#2dce89' }};">
+
+    <div class="ctoast-content">
+        <i class="fa-solid fa-{{isError ? 'xmark':'check' }} icon"></i>
+
+        <div class="message">
+            <span class="text text-danger fs-4">Erreur</span>
+            <span class="text text-danger">{{error}}</span>
+            <span class="text text-danger" *ngFor="let error of errorValidation | keyvalue">{{error.key}} : {{error.value}}</span>
+        </div>
+    </div>
+    <i class="fa-solid fa-xmark close" (click)="hide()"></i>
+
+    <div class="progress {{isShowed ? 'active' : ''}}"></div>
+</div>
+
+<button class="btn btn-primary" (click)="someMethod()">Show Toast</button>
+<button class="btn btn-primary" (click)="otherMethod()">Show Toast</button>
