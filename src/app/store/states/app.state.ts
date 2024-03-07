@@ -1,16 +1,9 @@
 import { Resume } from "../models/resume.model";
+import { FailureState } from "./failure.state";
+import { ResumeState } from "./resume.state";
 
 export interface AppState {
+    selectedTab: string;
     failureState: FailureState;
     resumeState: ResumeState;
-}
-
-export interface ResumeState {
-    resumes: Resume[];
-}
-
-export interface FailureState {
-    error: string;
-    message: string;
-    errorValidation: { [key: string]: string };
 }

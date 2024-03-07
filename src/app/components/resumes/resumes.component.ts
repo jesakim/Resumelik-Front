@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { loadResumes } from 'src/app/store/actions/resume.actions';
 import { Resume } from 'src/app/store/models/resume.model';
 import { selectResumes } from 'src/app/store/selectors/resume.selectors';
-import { AppState, ResumeState } from 'src/app/store/states/app.state';
+import { AppState } from 'src/app/store/states/app.state';
 
 @Component({
   selector: 'app-resumes',
@@ -16,7 +16,7 @@ export class ResumesComponent {
   resumes$! :Observable<Resume[]>;
 
   constructor(
-    private store: Store<any>,
+    private store: Store<AppState>,
   ){}
 
   ngOnInit(): void {

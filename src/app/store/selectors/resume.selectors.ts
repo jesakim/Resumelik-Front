@@ -1,6 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { ResumeState } from '../states/resume.state';
+import { AppState } from '../states/app.state';
 
-import {ResumeState } from '../states/app.state';
 
 // Define a feature selector for the resume state slice
 export const selectResumeState = createFeatureSelector<ResumeState>('resumeState');
@@ -9,4 +10,9 @@ export const selectResumeState = createFeatureSelector<ResumeState>('resumeState
 export const selectResumes = createSelector(
   selectResumeState,
   (state: ResumeState) => state.resumes
+);
+
+export const selectResume = createSelector(
+  selectResumeState,
+  (state: ResumeState) => state.selectedResume
 );

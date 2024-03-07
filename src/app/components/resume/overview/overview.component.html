@@ -1,1 +1,6 @@
-<p>overview works!</p>
+<div *ngIf="(resume$ | async) as resume">
+    <!-- Your HTML code to display the resume object properties -->
+    <h2>{{ resume.title }}</h2>
+    <p>{{ resume.firstName }}</p>
+    <p>{{ resume.lastName }}</p>
+  </div>

@@ -23,4 +23,8 @@ export class ResumeService {
     return this.http.post<Response<Resume>>(this.baseUrl,resume);
   }
 
+  getResumeByName(name:string){
+    return this.http.get<Response<Resume>>(this.baseUrl+'/'+name);
+  }
+
 }

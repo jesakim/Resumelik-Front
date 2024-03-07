@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddResumeComponent } from './components/resumes/add-resume/add-resume.component';
 import { NotificationsToastComponent } from './components/notifications-toast/notifications-toast.component';
 import { failureReducer } from './store/reducers/failure.reducer';
+import { sideBarReducer } from './store/reducers/side-bar.reducer';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { failureReducer } from './store/reducers/failure.reducer';
     StoreModule.forRoot({
       resumeState: resumeReducer,
       failureState: failureReducer,
+      sideBarState: sideBarReducer,
     }),
     EffectsModule.forRoot([ResumeEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),

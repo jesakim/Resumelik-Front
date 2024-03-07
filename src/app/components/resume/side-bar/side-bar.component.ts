@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { switchSideBar } from 'src/app/store/actions/side-bar.action';
 
 @Component({
   selector: 'app-side-bar',
@@ -14,7 +15,7 @@ export class SideBarComponent {
       title: 'Overview',
       link: 'overview',
       icon: 'fa-home',
-      active: true,
+      active: false,
     },
     {
       title: 'Contacts',
@@ -31,42 +32,50 @@ export class SideBarComponent {
     {
       title: 'Experiences',
       link: 'experiences',
-      icon: 'fa-briefcase'
+      icon: 'fa-briefcase',
+      active: false,
     },
     {
       title: 'Educations',
       link: 'educations',
-      icon: 'fa-graduation-cap'
+      icon: 'fa-graduation-cap',
+      active: false,
     },
     {
       title: 'Skills',
       link: 'skills',
-      icon: 'fa-cogs'
+      icon: 'fa-cogs',
+      active: false,
     },
     {
       title: 'Projects',
       link: 'projects',
-      icon: 'fa-tasks'
+      icon: 'fa-tasks',
+      active: false,
     },
     {
       title: 'Certificates',
       link: 'certificates',
-      icon: 'fa-certificate'
+      icon: 'fa-certificate',
+      active: false,
     },
     {
       title: 'Languages',
       link: 'languages',
-      icon: 'fa-language'
+      icon: 'fa-language',
+      active: false,
     },
     {
       title: 'Hobbies',
       link: 'hobbies',
-      icon: 'fa-medal'
+      icon: 'fa-medal',
+      active: false,
     },
     {
       title: 'Statistics',
       link: 'statistics',
-      icon: 'fa-chart-line'
+      icon: 'fa-chart-line',
+      active: false,
     },
   ];
 
@@ -81,6 +90,10 @@ export class SideBarComponent {
     this.route.params.subscribe(params => {
       this.slug = params['slug'];
     });
+
+    this.store.select('sideBarState').subscribe((tab) => {
+      this.setActiveTab(tab);
+    });
   }
 
   pinSidenav(){
@@ -89,7 +102,7 @@ export class SideBarComponent {
 
   setActiveTab(title:string){
     this.SidebarItems.forEach(item=>{
-      if(item.title === title){
+      if(item.title.toLowerCase() === title.toLowerCase()){
         item.active = true;
       }else{
         item.active = false;

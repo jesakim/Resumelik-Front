@@ -34,5 +34,14 @@ export class ResumeEffects {
               })
         ))
     ));
+
+    getResumeByName$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(ResumeActions.loadResumeByName),
+        mergeMap((action) => this.resumeService.getResumeByName(action.name).pipe(
+            tap((response) => console.log('Fetched resume',response)),
+            map(response => ResumeActions.resumeByNameLoaded({ resume: response.result})),
+        ))
+    ));
             
 }

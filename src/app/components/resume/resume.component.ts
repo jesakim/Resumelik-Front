@@ -20,7 +20,6 @@ export class ResumeComponent{
     this.route.params.subscribe(params => {
       this.slug = params['slug'];
     });
-
   }
 
   pinSidenav(){
