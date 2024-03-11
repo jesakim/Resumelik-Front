@@ -23,11 +23,13 @@ import { SideBarComponent } from './components/resume/side-bar/side-bar.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ResumeEffects } from './store/effects/resume.effects';
 import { resumeReducer } from './store/reducers/resume.reducer';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AddResumeComponent } from './components/resumes/add-resume/add-resume.component';
 import { NotificationsToastComponent } from './components/notifications-toast/notifications-toast.component';
 import { failureReducer } from './store/reducers/failure.reducer';
-import { sideBarReducer } from './store/reducers/side-bar.reducer';
+import { ContactEffects } from './store/effects/contact.effects';
+import { AddressEffect } from './store/effects/address.effects';
+import { ExperienceEffect } from './store/effects/experience.effects';
 
 @NgModule({
   declarations: [
@@ -56,9 +58,13 @@ import { sideBarReducer } from './store/reducers/side-bar.reducer';
     StoreModule.forRoot({
       resumeState: resumeReducer,
       failureState: failureReducer,
-      sideBarState: sideBarReducer,
     }),
-    EffectsModule.forRoot([ResumeEffects]),
+    EffectsModule.forRoot([
+      ResumeEffects,
+      ContactEffects,
+      AddressEffect,
+      ExperienceEffect,
+    ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     ReactiveFormsModule,
   ],

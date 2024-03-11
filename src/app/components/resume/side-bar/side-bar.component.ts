@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { switchSideBar } from 'src/app/store/actions/side-bar.action';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { deleteResume } from 'src/app/store/actions/resume.actions';
+import { selectResume } from 'src/app/store/selectors/resume.selectors';
+import { AppState } from 'src/app/store/states/app.state';
 
 @Component({
   selector: 'app-side-bar',
@@ -83,7 +85,8 @@ export class SideBarComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<any>,
+    private store: Store<AppState>,
+    private router:Router,
     ){};
 
   ngOnInit(): void {
@@ -91,7 +94,7 @@ export class SideBarComponent {
       this.slug = params['slug'];
     });
 
-    this.store.select('sideBarState').subscribe((tab) => {
+    this.store.select(state => state.resumeState.selectedTab).subscribe((tab) => {
       this.setActiveTab(tab);
     });
   }
@@ -108,5 +111,13 @@ export class SideBarComponent {
         item.active = false;
       }
     })
+  }
+
+  deleteResume(){
+    this.store.pipe(select(selectResume)).subscribe((resume) => {
+      console.log(resume);
+      this.store.dispatch(deleteResume({id: resume.id}));
+    });
+    this.router.navigate(['/resumes']);
   }
 }

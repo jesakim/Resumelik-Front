@@ -1,1 +1,61 @@
-<p>contacts works!</p>
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="contactForm" (submit)="submitContact()" class="row">
+        <div class="form-group col-6">
+            <label class="fs-6">Type</label>
+            <select class="form-control" formControlName="type">
+              <option value="OTHER" selected>OTHER</option>
+              <option value="PHONE">PHONE</option>
+              <option value="EMAIL">EMAIL</option>
+              <option value="LINKEDIN">LINKEDIN</option>
+              <option value="GITHUB">GITHUB</option>
+              <option value="TWITTER">TWITTER</option>
+              <option value="INSTAGRAM">INSTAGRAM</option>
+              <option value="FACEBOOK">FACEBOOK</option>
+              <option value="WEBSITE">WEBSITE</option>
+            </select>
+            <div *ngIf="contactForm.get('type')!.invalid && contactForm.get('type')!.touched" class="text-danger">Required field</div>
+          </div>          
+        <div class="form-group col-6">
+          <label class="fs-6">Text</label>
+          <input type="text" class="form-control" placeholder="Text" formControlName="text">
+          <div *ngIf="contactForm.get('text')!.invalid && contactForm.get('text')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group">
+          <label class="fs-6">Link</label>
+          <input type="text" class="form-control" placeholder="Link" formControlName="link">
+          <div *ngIf="contactForm.get('link')!.invalid && contactForm.get('link')!.touched" class="text-danger">Required field</div>
+        </div>
+        <!-- <input type="text" formControlName="resumeId">
+        <input type="text" formControlName="id"> -->
+      <div class="d-flex justify-content-end">
+          <button *ngIf="contactForm.get('id')!.value" class="btn btn-danger m-0 me-1" type="button" (click)="contactFormReset()">Cancel</button>
+        <button *ngIf="contactForm.get('id')!.value" class="btn btn-primary m-0" type="submit">Edit</button>
+        <button *ngIf="!contactForm.get('id')!.value" class="btn btn-primary m-0" type="submit">Add</button>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <div class="row p-2">
+    <div class="p-1 col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let contact of contacts">
+      <div class="card card-frame h-100">
+        <div class="card-body p-3 pb-0">
+            <h6 class="m-0">{{contact.text}}</h6>
+            <a href="http://{{contact.link}}" target="_blank" class="btn btn-link p-0 m-0">{{contact.link}}</a>
+        </div>
+        <div class="d-flex justify-content-between w-100 px-3 py-2">
+          <span class="badge bg-gradient-primary mb-0">{{contact.type}}</span>
+          <div>
+            <button class="btn btn-link p-0 mb-0" type="button" (click)="deleteContact(contact.id)">
+              <i class="fa-solid fa-trash-can fs-4 text-danger me-1"></i>
+            </button>
+            <button class="btn btn-link p-0 mb-0" type="button" (click)="editContact(contact)">
+              <i class="fa-regular fa-pen-to-square fs-4"></i>
+            </button>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    </div>

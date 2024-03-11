@@ -45,21 +45,4 @@ export class NotificationsToastComponent {
     this.isShowed = false;
     clearTimeout(this.timeout);
   }
-
-  someMethod() {
-    const errorValidation = {
-      email: 'Email is required',
-      password: 'Password is required',
-    };
-    this.store.dispatch(failureAction({ error: 'error.message', errorValidation: errorValidation}));
-
-  }
-
-  otherMethod() {
-    const errorValidation = {
-      email: 'Email not required',
-      password: 'Password not required',
-    };
-    this.store.dispatch(failureAction({ error: 'otherMessage', errorValidation: {} }));
-  }
 }

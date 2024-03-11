@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FullResume } from 'src/app/store/models/full-resume.model';
 import { Resume } from 'src/app/store/models/resume.model';
 import { Constants } from 'src/app/utils/constants';
 import { Response } from 'src/app/utils/response';
@@ -24,7 +25,17 @@ export class ResumeService {
   }
 
   getResumeByName(name:string){
-    return this.http.get<Response<Resume>>(this.baseUrl+'/'+name);
+    return this.http.get<Response<FullResume>>(this.baseUrl+'/'+name);
+  }
+
+  updateResume(resume:Resume){
+    console.log(resume);
+    
+    return this.http.put<Response<Resume>>(this.baseUrl+'/'+resume.id,resume);
+  }
+
+  deleteResume(id:number){
+    return this.http.delete<Response<any>>(this.baseUrl+'/'+id);
   }
 
 }

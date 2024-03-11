@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { switchSideBar } from 'src/app/store/actions/side-bar.action';
+import { switchActiveTab } from 'src/app/store/actions/resume.actions';
 import { AppState } from 'src/app/store/states/app.state';
 
 @Component({
@@ -15,7 +15,7 @@ export class SkillsComponent {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(switchSideBar( 'Skills' ));
+    this.store.dispatch(switchActiveTab( 'Skills' ));
   }
 
 }

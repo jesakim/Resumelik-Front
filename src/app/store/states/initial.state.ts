@@ -1,8 +1,8 @@
 import { AppState } from "./app.state";
 
 export const initialState: AppState = {
-    selectedTab: 'overview',
     resumeState: {
+        selectedTab: 'overview',
         resumes: [],
         selectedResume: {
             id: 0,
@@ -12,6 +12,15 @@ export const initialState: AppState = {
             picture: '',
             title: '',
             userId: 0,
+            addresses: [],
+            certificates: [],
+            contacts: [],
+            educations: [],
+            experiences: [],
+            hobbies: [],
+            languages: [],
+            projects: [],
+            skills: [],
         },
     },
     failureState: {

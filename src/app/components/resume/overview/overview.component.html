@@ -1,6 +1,42 @@
-<div *ngIf="(resume$ | async) as resume">
-    <!-- Your HTML code to display the resume object properties -->
-    <h2>{{ resume.title }}</h2>
-    <p>{{ resume.firstName }}</p>
-    <p>{{ resume.lastName }}</p>
+<div class="card">
+    <h4 class="card-header p-3 pb-0 text-dark">
+      Resume Overview
+    </h4>
+    <div class="card-body">
+      <form [formGroup]="editResumeForm" (submit)="editResume()">
+        <div class="form-group">
+          <label class="fs-6">Resume Name</label>
+          <div class="input-group">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder="Username" formControlName="name">
+          </div>
+          <div *ngIf="editResumeForm.get('name')!.invalid && editResumeForm.get('name')!.touched" class="text-danger">Required field, minimum 3 characters</div>
+        </div>
+        <div class="form-group">
+          <label class="fs-6">First Name</label>
+          <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
+          <div *ngIf="editResumeForm.get('firstName')!.invalid && editResumeForm.get('firstName')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group">
+          <label class="fs-6">Last Name</label>
+          <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+          <div *ngIf="editResumeForm.get('lastName')!.invalid && editResumeForm.get('lastName')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group">
+          <label class="fs-6">Picture</label>
+          <input type="text" class="form-control" placeholder="Picture" formControlName="picture">
+          <div *ngIf="editResumeForm.get('picture')!.invalid && editResumeForm.get('picture')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group">
+          <label class="fs-6">Title</label>
+          <input type="text" class="form-control" placeholder="Title" formControlName="title">
+          <div *ngIf="editResumeForm.get('title')!.invalid && editResumeForm.get('title')!.touched" class="text-danger">Required field</div>
+        </div>
+      <div class="d-flex justify-content-end">
+        <button *ngIf="!editable" class="btn btn-primary m-0" type="button" (click)="toggleEditable()">Edit</button>
+        <button *ngIf="editable" class="btn btn-danger m-0 me-1" type="button" (click)="toggleEditable()">Cancel</button>
+        <button *ngIf="editable" class="btn btn-primary m-0" type="submit">Save</button>
+      </div>
+    </form>
+    </div>
   </div>

@@ -20,11 +20,11 @@ export class AddResumeComponent {
 
   ngOnInit(): void {
     this.addResumeForm = this.formBuilder.group({
-      name: ['sv', [Validators.required]],
-      firstName: ['svbdbrftnfgbc', Validators.required],
-      lastName: ['svbdbrftnfgbc', Validators.required],
-      picture: ['svbdbrftnfgbc', Validators.required],
-      title: ['svbdbrftnfgbc', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      picture: ['', Validators.required],
+      title: ['', Validators.required],
     });
   }
 
@@ -32,6 +32,10 @@ export class AddResumeComponent {
     if (this.addResumeForm.valid) {
       const formData = this.addResumeForm.value as Resume;
       this.store.dispatch(resumeActions.addResume({resume: formData}))
+      document.getElementById('closeAddResumeModal')?.click();
+      this.addResumeForm.reset();
+    }else{
+      this.addResumeForm.markAllAsTouched();
     }
   }
 
