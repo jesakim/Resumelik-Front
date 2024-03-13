@@ -13,7 +13,7 @@ import { AppState } from 'src/app/store/states/app.state';
 })
 export class ResumesComponent {
 
-  resumes$! :Observable<Resume[]>;
+  resumes!: Resume[];
 
   constructor(
     private store: Store<AppState>,
@@ -21,6 +21,8 @@ export class ResumesComponent {
 
   ngOnInit(): void {
     this.store.dispatch(loadResumes());
-    this.resumes$ = this.store.pipe(select(selectResumes));
+    this.store.pipe(select(selectResumes)).subscribe(resumes => {
+      this.resumes = resumes;      
+    });
   }
 }

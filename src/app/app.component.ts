@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './store/states/app.state';
 import { failureAction } from './store/actions/failure.action';
+import { loadToken } from './store/actions/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,9 @@ import { failureAction } from './store/actions/failure.action';
 })
 export class AppComponent {
   title = 'Resumlik-Front';
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit() {
+    this.store.dispatch(loadToken());
+  }
 }

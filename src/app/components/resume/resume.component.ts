@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { state } from '@angular/animations';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { loadResumeByName } from 'src/app/store/actions/resume.actions';
+import { selectResume } from 'src/app/store/selectors/resume.selectors';
 import { AppState } from 'src/app/store/states/app.state';
 
 @Component({
@@ -12,6 +14,7 @@ import { AppState } from 'src/app/store/states/app.state';
 export class ResumeComponent{
   
   slug!: string;
+  activeTab!: string;
 
   
   
@@ -25,6 +28,11 @@ export class ResumeComponent{
       this.slug = params['slug'];
     });
     this.store.dispatch(loadResumeByName({name:this.slug}));
+    this.store.select(state => state.resumeState.selectedTab).subscribe(tab => {
+      this.activeTab = tab;
+    });
+
+
   }
 
   pinSidenav(){

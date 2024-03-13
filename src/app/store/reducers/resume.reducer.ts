@@ -3,6 +3,12 @@ import * as ResumeActions from '../actions/resume.actions';
 import * as ContactActions from '../actions/contact.actions';
 import * as AddressActions from '../actions/address.actions';
 import * as ExperienceActions from '../actions/experience.actions';
+import * as EducationActions from '../actions/education.actions';
+import * as SkillActions from '../actions/skill.actions';
+import * as ProjectActions from '../actions/project.actions';
+import * as CertificateActions from '../actions/certificate.actions';
+import * as LanguageActions from '../actions/language.actions';
+import * as HobbyActions from '../actions/hobby.actions';
 import { initialState } from '../states/initial.state';
 import { FullResume } from '../models/full-resume.model';
 
@@ -112,5 +118,182 @@ export const resumeReducer = createReducer(
             experiences: state.selectedResume.experiences.filter(e => e.id !== id) 
         }
     })),
+
+    // Education actions
+
+    on(EducationActions.educationAdded, (state, { education }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            educations: [...state.selectedResume.educations, education] 
+        }
+    })),
+
+    on(EducationActions.educationUpdated, (state, { education }) => {
+        const index = state.selectedResume.educations.findIndex(e => e.id === education.id);
+        const updatedEducations = [...state.selectedResume.educations];
+        updatedEducations[index] = education;
+        return { 
+            ...state, 
+            selectedResume:{
+                ...state.selectedResume,
+                educations: updatedEducations 
+            }
+        };
+    }),
+
+    on(EducationActions.educationDeleted, (state, { id }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            educations: state.selectedResume.educations.filter(e => e.id !== id) 
+        }
+    })),
+
+    // Skill actions
+
+    on(SkillActions.skillAdded, (state, { skill }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            skills: [...state.selectedResume.skills, skill] 
+        }
+    })),
+    on(SkillActions.skillUpdated, (state, { skill }) => {
+        const index = state.selectedResume.skills.findIndex(s => s.id === skill.id);
+        const updatedSkills = [...state.selectedResume.skills];
+        updatedSkills[index] = skill;
+        return { 
+            ...state, 
+            selectedResume:{
+                ...state.selectedResume,
+                skills: updatedSkills 
+            }
+        };
+    }),
+    on(SkillActions.skillDeleted, (state, { id }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            skills: state.selectedResume.skills.filter(s => s.id !== id) 
+        }
+    })),
+
+    // Project actions
+
+    on(ProjectActions.projectAdded, (state, { project }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            projects: [...state.selectedResume.projects, project] 
+        }
+    })),
+    on(ProjectActions.projectUpdated, (state, { project }) => {
+        const index = state.selectedResume.projects.findIndex(p => p.id === project.id);
+        const updatedProjects = [...state.selectedResume.projects];
+        updatedProjects[index] = project;
+        return { 
+            ...state, 
+            selectedResume:{
+                ...state.selectedResume,
+                projects: updatedProjects 
+            }
+        };
+    }),
+    on(ProjectActions.projectDeleted, (state, { id }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            projects: state.selectedResume.projects.filter(p => p.id !== id) 
+        }
+    })),
+
+    // Certificate actions
+
+    on(CertificateActions.certificateAdded, (state, { certificate }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            certificates: [...state.selectedResume.certificates, certificate] 
+        }
+    })),
+    on(CertificateActions.certificateUpdated, (state, { certificate }) => {
+        const index = state.selectedResume.certificates.findIndex(c => c.id === certificate.id);
+        const updatedCertificates = [...state.selectedResume.certificates];
+        updatedCertificates[index] = certificate;
+        return { 
+            ...state, 
+            selectedResume:{
+                ...state.selectedResume,
+                certificates: updatedCertificates 
+            }
+        };
+    }),
+    on(CertificateActions.certificateDeleted, (state, { id }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            certificates: state.selectedResume.certificates.filter(c => c.id !== id) 
+        }
+    })),
+
+    // Language actions
+
+    on(LanguageActions.languageAdded, (state, { language }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            languages: [...state.selectedResume.languages, language] 
+        }
+    })),
+    on(LanguageActions.languageUpdated, (state, { language }) => {
+        const index = state.selectedResume.languages.findIndex(l => l.id === language.id);
+        const updatedLanguages = [...state.selectedResume.languages];
+        updatedLanguages[index] = language;
+        return { 
+            ...state, 
+            selectedResume:{
+                ...state.selectedResume,
+                languages: updatedLanguages 
+            }
+        };
+    }),
+    on(LanguageActions.languageDeleted, (state, { id }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            languages: state.selectedResume.languages.filter(l => l.id !== id) 
+        }
+    })),
+
+    // Hobby actions
+
+    on(HobbyActions.hobbyAdded, (state, { hobby }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            hobbies: [...state.selectedResume.hobbies, hobby] 
+        }
+    })),
+    on(HobbyActions.hobbyUpdated, (state, { hobby }) => {
+        const index = state.selectedResume.hobbies.findIndex(h => h.id === hobby.id);
+        const updatedHobbies = [...state.selectedResume.hobbies];
+        updatedHobbies[index] = hobby;
+        return { 
+            ...state, 
+            selectedResume:{
+                ...state.selectedResume,
+                hobbies: updatedHobbies 
+            }
+        };
+    }),
+    on(HobbyActions.hobbyDeleted, (state, { id }) => ({ 
+        ...state, 
+        selectedResume:{
+            ...state.selectedResume,
+            hobbies: state.selectedResume.hobbies.filter(h => h.id !== id) 
+        }
+    }))
+
 
 );

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
@@ -72,8 +73,8 @@ export class ExperiencesComponent {
       id: experience.id,
       company: experience.company,
       title: experience.title,
-      fromDate: experience.fromDate ? new Date(experience.fromDate) : null, // Convert date string to Date object
-      toDate: experience.toDate ? new Date(experience.toDate) : null, // Convert date string to Date object
+      fromDate: experience.fromDate ? formatDate(experience.fromDate, 'yyyy-MM-dd', 'en-US') : null,
+      toDate: experience.toDate ? formatDate(experience.toDate, 'yyyy-MM-dd', 'en-US')  : null,
       description: experience.description,
       resumeId: this.resumeId
     });

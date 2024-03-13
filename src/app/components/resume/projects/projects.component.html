@@ -1,1 +1,69 @@
-<p>projects works!</p>
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="projectForm" (submit)="submitProject()" class="row">
+        <div class="form-group col-6">
+          <label class="fs-6">Name</label>
+          <input type="text" class="form-control" placeholder="Name" formControlName="name">
+          <div *ngIf="projectForm.get('name')!.invalid && projectForm.get('name')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group col-6">
+          <label class="fs-6">Title</label>
+          <input type="text" class="form-control" placeholder="Title" formControlName="title">
+          <div *ngIf="projectForm.get('title')!.invalid && projectForm.get('title')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group col-6">
+            <label class="fs-6">Mode</label>
+            <select class="form-control" formControlName="mode">
+              <option value="OTHER" selected>OTHER</option>
+              <option value="PERSONAL">PERSONAL</option>
+              <option value="GROUP">GROUP</option>
+              <option value="ACADEMIC">ACADEMIC</option>
+              <option value="PROFESSIONAL">PROFESSIONAL</option>
+              <option value="OPEN_SOURCE">OPEN SOURCE</option>
+            </select>
+            <div *ngIf="projectForm.get('mode')!.invalid && projectForm.get('mode')!.touched" class="text-danger">Required field</div>
+          </div>
+        <div class="form-group col-6">
+          <label class="fs-6">Realised At</label>
+          <input type="date" class="form-control" placeholder="Realised At" formControlName="realisedAt">
+          <div *ngIf="projectForm.get('realisedAt')!.invalid && projectForm.get('realisedAt')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group col-12">
+          <label class="fs-6">Description</label>
+          <textarea class="form-control" rows="3" placeholder="Description" formControlName="description"></textarea>
+          <div *ngIf="projectForm.get('description')!.invalid && projectForm.get('description')!.touched" class="text-danger">Required field</div>
+        </div>
+        <input type="text" formControlName="resumeId" hidden>
+        <div class="d-flex justify-content-end">
+          <button *ngIf="projectForm.get('id')!.value" class="btn btn-danger m-0 me-1" type="button" (click)="projectFormReset()">Cancel</button>
+          <button *ngIf="projectForm.get('id')!.value" class="btn btn-primary m-0" type="submit">Edit</button>
+          <button *ngIf="!projectForm.get('id')!.value" class="btn btn-primary m-0" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  
+  <div class="row p-2">
+    <div class="p-1 col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let project of projects">
+      <div class="card card-frame h-100">
+        <div class="card-body p-3 pb-0">
+          <p class="card-text">{{ project.name ? project.name : 'Name' }}</p>
+          <p class="card-text">{{ project.title ? project.title : 'Title' }}</p>
+          <p class="card-text">{{ project.mode ? project.mode : 'Mode' }}</p>
+          <p class="card-text">{{ project.realisedAt | date }}</p>
+          <p class="card-text">{{ project.description ? project.description : 'Description' }}</p>
+        </div>
+        <div class="d-flex justify-content-end w-100 px-3 py-2">
+          <button class="btn btn-link p-0 mb-0" type="button" (click)="deleteProject(project.id)">
+            <i class="fa-solid fa-trash-can fs-4 text-danger me-1"></i>
+          </button>
+          <button class="btn btn-link p-0 mb-0" type="button" (click)="editProject(project)">
+            <i class="fa-regular fa-pen-to-square fs-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

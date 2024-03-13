@@ -1,1 +1,54 @@
-<p>educations works!</p>
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="educationForm" (submit)="submitEducation()" class="row">
+        <div class="form-group col-6">
+          <label class="fs-6">Establishment</label>
+          <input type="text" class="form-control" placeholder="Establishment" formControlName="establishment">
+          <div *ngIf="educationForm.get('establishment')!.invalid && educationForm.get('establishment')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group col-6">
+          <label class="fs-6">Degree</label>
+          <input type="text" class="form-control" placeholder="Degree" formControlName="degree">
+          <div *ngIf="educationForm.get('degree')!.invalid && educationForm.get('degree')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group col-6">
+          <label class="fs-6">From Date</label>
+          <input type="date" class="form-control" placeholder="From Date" formControlName="fromDate">
+          <div *ngIf="educationForm.get('fromDate')!.invalid && educationForm.get('fromDate')!.touched" class="text-danger">Required field</div>
+        </div>
+        <div class="form-group col-6">
+          <label class="fs-6">To Date</label>
+          <input type="date" class="form-control" placeholder="To Date" formControlName="toDate">
+        </div>
+        <input type="text" formControlName="resumeId" hidden>
+        <div class="d-flex justify-content-end">
+          <button *ngIf="educationForm.get('id')!.value" class="btn btn-danger m-0 me-1" type="button" (click)="educationFormReset()">Cancel</button>
+          <button *ngIf="educationForm.get('id')!.value" class="btn btn-primary m-0" type="submit">Edit</button>
+          <button *ngIf="!educationForm.get('id')!.value" class="btn btn-primary m-0" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row p-2">
+    <div class="p-1 col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let education of educations">
+      <div class="card card-frame h-100">
+        <div class="card-body p-3 pb-0">
+          <p class="card-text">{{ education.establishment ? education.establishment : 'Establishment' }}</p>
+          <p class="card-text">{{ education.degree ? education.degree : 'Degree' }}</p>
+          <p class="card-text">{{ education.fromDate | date:'mediumDate' }}</p>
+          <p class="card-text">{{ education.toDate | date:'mediumDate' }}</p>
+        </div>
+        <div class="d-flex justify-content-end w-100 px-3 py-2">
+          <button class="btn btn-link p-0 mb-0" type="button" (click)="deleteEducation(education.id)">
+            <i class="fa-solid fa-trash-can fs-4 text-danger me-1"></i>
+          </button>
+          <button class="btn btn-link p-0 mb-0" type="button" (click)="editEducation(education)">
+            <i class="fa-regular fa-pen-to-square fs-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

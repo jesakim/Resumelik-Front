@@ -28,4 +28,9 @@ export const initialState: AppState = {
         message: '',
         errorValidation: {},
     },
+    authState: {
+        user: null,
+        isAuthenticated: false,
+        token: null,
+    },
 };

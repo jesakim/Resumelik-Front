@@ -13,10 +13,21 @@ import { CertificatesComponent } from './components/resume/certificates/certific
 import { LanguagesComponent } from './components/resume/languages/languages.component';
 import { HobbiesComponent } from './components/resume/hobbies/hobbies.component';
 import { StatisticsComponent } from './components/resume/statistics/statistics.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path:'resumes', component: ResumesComponent},
-  { path:'resumes/:slug', component: ResumeComponent,
+  { path:'auth',component: AuthComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+},
+  { path:'resumes', component: ResumesComponent,canActivate:[authGuard]},
+  { path:'resumes/:slug', component: ResumeComponent,canActivateChild:[authGuard],
     children: [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
       { path: 'overview', component: OverviewComponent },
