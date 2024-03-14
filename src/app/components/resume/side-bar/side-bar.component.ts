@@ -73,12 +73,12 @@ export class SideBarComponent {
       icon: 'fa-medal',
       active: false,
     },
-    {
-      title: 'Statistics',
-      link: 'statistics',
-      icon: 'fa-chart-line',
-      active: false,
-    },
+    // {
+    //   title: 'Preview',
+    //   link: 'preview',
+    //   icon: 'fa-eye',
+    //   active: false,
+    // },
   ];
 
   slug?: string;

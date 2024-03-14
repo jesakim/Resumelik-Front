@@ -57,4 +57,11 @@ export class AuthEffect{
             return of(AuthActions.logout());
         })
     ));
+
+    logout$ = createEffect(() => this.actions$.pipe(
+        ofType(AuthActions.logout),
+        tap(action => {
+            localStorage.removeItem('token');
+        })
+    ), { dispatch: false });
 }

@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router : Router = inject(Router);
   return store.pipe(
     select(selectIsAuthenticated),
-    tap(isAuthenticated => {      
+    tap(isAuthenticated => {            
       if (!isAuthenticated) {
         router.navigate(['auth/login']); // Redirect to login if not authenticated
       }

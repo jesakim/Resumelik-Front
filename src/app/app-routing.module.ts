@@ -17,8 +17,10 @@ import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { authGuard } from './guards/auth.guard';
+import { PreviewComponent } from './components/resume/preview/preview.component';
 
 const routes: Routes = [
+  { path: '', redirectTo:'resumes', pathMatch: 'full'},
   { path:'auth',component: AuthComponent,
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -40,9 +42,9 @@ const routes: Routes = [
       { path: 'certificates', component: CertificatesComponent },
       { path: 'languages', component: LanguagesComponent },
       { path: 'hobbies', component: HobbiesComponent },
-      { path: 'statistics', component: StatisticsComponent}
     ]
-  }
+  },
+  {path:'resumes/:slug/preview',component:PreviewComponent},
 ];
 
 @NgModule({

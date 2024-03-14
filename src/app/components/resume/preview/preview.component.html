@@ -1,0 +1,126 @@
+<div class="row " style="min-height :100vh;">
+          <div class="col-3 p-0 mh-100">
+            <div class="resume-base bg-primary user-dashboard-info-box p-4 h-100">
+              <div class="profile">
+                <div class="jobster-user-info">
+                  <div class="profile-avatar">
+                    <img class="img-fluid " src="{{resume.picture}}" onerror="this.src='assets/imgs/avatar.png'" alt="">
+                  </div>
+                  <div class="profile-avatar-info mt-3">
+                    <h5 class="text-white">{{resume.firstName}} {{resume.lastName}}</h5>
+                    <h5 class="text-white">{{resume.title}}</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="about-candidate border-top">
+
+                <div class="candidate-info" *ngFor="let contact of resume.contacts">
+                  <h6 class="text-white">{{contact.type}}</h6>
+                  <a class="text-white" href="{{contact.link}}" target="_blank">{{contact.text}}</a>
+                </div>
+                <div class="candidate-info">
+                  <h6 class="text-white">Addresses:</h6>
+                  <p class="text-white" *ngFor="let address of resume.addresses">{{address.street}}, {{address.additionalStreet}}, {{address.city}}, {{address.country}}</p>
+                </div>
+              </div>
+              <div class="mt-0">
+                <h5 class="text-white">Languages</h5>
+                <div class="progress bg-dark" *ngFor="let language of resume.languages">
+                  <div class="progress-bar bg-white" role="progressbar" [style.width.%]="language.level * 20" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar-title text-white">{{language.name}}</div>
+                    <span class="progress-bar-number text-white">{{language.level * 20}}%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-0">
+                <h5 class="text-white">Hobbies</h5>
+                <ul class="ps-3" >
+                  <li class="text-white" *ngFor="let hobbie of resume.hobbies">{{hobbie.name}}</li>
+                </ul>
+              </div>
+              <div class="mt-0">
+                <h5 class="text-white">Skills</h5>
+                <ul class="ps-3" >
+                  <li class="text-white" *ngFor="let skill of resume.skills">
+                    <span class="text-white">{{skill.name}}</span>
+                    <span class="text-white opacity-5">({{skill.type}})</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-9 p-0 mh-100">
+            <div class="resume-experience ps-6 pt-4 pe-0 h-100">
+              <div class="timeline-box">
+                <h5 class="resume-experience-title">Education:</h5>
+                <div class="jobster-candidate-timeline">
+                  <div class="jobster-timeline-item" *ngFor="let education of resume.educations">
+                    <div class="jobster-timeline-cricle">
+                      <i class="far fa-circle"></i>
+                    </div>
+                    <div class="jobster-timeline-info">
+                      <div class="dashboard-timeline-info">
+                        <span class="jobster-timeline-time">{{education.fromDate | date}} - {{education.toDate | date}}</span>
+                        <h6 class="mb-2">{{education.degree}}</h6>
+                        <span>- {{education.establishment}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-box mt-4">
+                <h5 class="resume-experience-title">Work &amp; Experience:</h5>
+                <div class="jobster-candidate-timeline">
+                  <div class="jobster-timeline-item" *ngFor="let experience of resume.experiences">
+                    <div class="jobster-timeline-cricle">
+                      <i class="far fa-circle"></i>
+                    </div>
+                    <div class="jobster-timeline-info">
+                      <div class="dashboard-timeline-info">
+                        <span class="jobster-timeline-time">{{experience.fromDate | date}} to {{experience.toDate | date}}</span>
+                        <h6 class="mb-2">{{experience.title}}</h6>
+                        <span>- {{experience.company}}</span>
+                        <p class="mt-2">{{experience.description}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-box mt-4">
+                <h5 class="resume-experience-title">Projects:</h5>
+                <div class="jobster-candidate-timeline">
+                  <div class="jobster-timeline-item" *ngFor="let project of resume.projects">
+                    <div class="jobster-timeline-cricle">
+                      <i class="far fa-circle"></i>
+                    </div>
+                    <div class="jobster-timeline-info">
+                      <div class="dashboard-timeline-info">
+                        <span class="jobster-timeline-time">{{project.realisedAt | date}}</span>
+                        <h6 class="mb-2">{{project.title}}</h6>
+                        <span>- {{project.name}} <span class="text-dark opacity-5">({{project.mode}})</span></span>
+                        <p class="mt-2">{{project.description}}</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="timeline-box mt-4">
+              <h5 class="resume-experience-title">Certificates:</h5>
+              <div class="jobster-candidate-timeline">
+                <div class="jobster-timeline-item" *ngFor="let certificate of resume.certificates">
+                  <div class="jobster-timeline-cricle">
+                    <i class="far fa-circle"></i>
+                  </div>
+                  <div class="jobster-timeline-info">
+                    <div class="dashboard-timeline-info">
+                      <span class="jobster-timeline-time">{{certificate.date | date}}</span>
+                      <h6 class="mb-2">{{certificate.name}}</h6>
+                      <span>- {{certificate.issuer}}</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>

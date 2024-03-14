@@ -12,11 +12,11 @@
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-                <button class="btn btn-link text-white font-weight-bold px-0 m-0">
-                    <i class="fa fa-user me-sm-1"></i>
-                    <span class="d-sm-inline d-none">user</span>
-                </button>
-            </li>
+              <button class="btn btn-link text-danger font-weight-bold px-0 m-0" (click)="logout()">
+                <i class="fa-solid fa-power-off me-sm-1"></i>                    
+                <span class="d-sm-inline d-none">Logout</span>
+              </button>
+          </li>
           </ul>
         </div>
       </div>
@@ -25,10 +25,10 @@
     <div class="container-fluid py-4">
 
       <div class="row">
-        <div class="p-1 col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let resume of resumes">
-          <a class="card card-frame" [routerLink]="['/resumes',resume.name,'overview']">
+        <div class="p-1 col-6 col-sm-4 col-lg-3 col-xl-2 " *ngFor="let resume of resumes">
+          <a class="card card-frame h-100" [routerLink]="['/resumes',resume.name,'overview']">
             <div class="card-header p-2">
-                <img src="https://st3.depositphotos.com/15648834/17930/v/450/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" class="img-fluid border-radius-lg">
+                <img src="{{resume.picture}}" onerror="this.src='assets/imgs/avatar.png'" class="img-fluid border-radius-lg">
             </div>
             <div class="card-body p-0">
               <div class="d-flex flex-column align-items-center">

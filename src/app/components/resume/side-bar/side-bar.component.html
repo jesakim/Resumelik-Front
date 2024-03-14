@@ -14,6 +14,10 @@
             <span class="nav-link-text ms-1">{{ SidebarItem.title }}</span>
           </a>
         </li>
+        <a class="btn btn-primary mx-3" [routerLink]="['/', 'resumes',slug, 'preview']" target="_blank">
+          <i class="fa-regular fa-eye me-1"></i>
+          preview
+        </a>
         <button class="btn btn-danger mx-3" (click)="deleteResume()">
           <i class="fa-regular fa-trash-can me-1"></i>
           delete

@@ -42,6 +42,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { failureReducer } from './store/reducers/failure.reducer';
 import { resumeReducer } from './store/reducers/resume.reducer';
 import { authReducer } from './store/reducers/auth.reducer';
+import { LogoutInterceptor } from './interceptors/logout.interceptor';
+import { PreviewComponent } from './components/resume/preview/preview.component';
 
 
 @NgModule({
@@ -66,6 +68,7 @@ import { authReducer } from './store/reducers/auth.reducer';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
+    PreviewComponent,
   ],
   imports: [
     HttpClientModule,
@@ -96,6 +99,11 @@ import { authReducer } from './store/reducers/auth.reducer';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LogoutInterceptor,
       multi: true
     }
   ],

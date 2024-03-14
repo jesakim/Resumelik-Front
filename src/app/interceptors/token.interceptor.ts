@@ -20,13 +20,16 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private store: Store<AppState>) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (req.url.includes('/login') || req.url.includes('/register')) {
+          return next.handle(req); // Don't add the bearer token for these routes
+        }
         const authToken = localStorage.getItem('token');
         if (authToken) {
-        const authReq = req.clone({
-            setHeaders: {
-            Authorization: `Bearer ${authToken}`
-            }
-        });
+            const authReq = req.clone({
+              setHeaders: {
+              Authorization: `Bearer ${authToken}`
+              }
+            });
         return next.handle(authReq);
         } else {
         return next.handle(req);

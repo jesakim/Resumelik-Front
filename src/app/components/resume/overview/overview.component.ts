@@ -35,6 +35,7 @@ export class OverviewComponent {
       title: [{value:'',disabled:!this.editable} , Validators.required],
     });
     this.store.pipe(select(selectResume)).subscribe((resume) => {
+      this.router.navigate(['/resumes', resume.name]);
       this.resume = resume;
       this.editResumeForm.patchValue(this.resume);
     });
@@ -56,7 +57,6 @@ export class OverviewComponent {
     if (this.editResumeForm.valid) {
       const formData = this.editResumeForm.value as Resume;
       this.store.dispatch(updateResume({resume: formData}))
-      this.router.navigate(['/resumes', formData.name]);
       this.toggleEditable();
     }
   }
