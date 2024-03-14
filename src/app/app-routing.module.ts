@@ -18,6 +18,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { authGuard } from './guards/auth.guard';
 import { PreviewComponent } from './components/resume/preview/preview.component';
+import { ViewResumeComponent } from './components/public/view-resume/view-resume.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'resumes', pathMatch: 'full'},
@@ -44,7 +45,8 @@ const routes: Routes = [
       { path: 'hobbies', component: HobbiesComponent },
     ]
   },
-  {path:'resumes/:slug/preview',component:PreviewComponent},
+  {path:'resumes/:slug/preview',component:PreviewComponent,canActivate:[authGuard]},
+  {path:'public/:slug',component:ViewResumeComponent}
 ];
 
 @NgModule({

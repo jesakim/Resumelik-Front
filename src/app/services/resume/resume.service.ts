@@ -38,4 +38,8 @@ export class ResumeService {
     return this.http.delete<Response<any>>(this.baseUrl+'/'+id);
   }
 
+  getResumeByNamePublic(name:string){
+    return this.http.get<Response<FullResume>>(this.baseUrl+'/public/'+name);
+  }
+
 }

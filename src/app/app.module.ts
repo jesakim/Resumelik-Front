@@ -44,6 +44,7 @@ import { resumeReducer } from './store/reducers/resume.reducer';
 import { authReducer } from './store/reducers/auth.reducer';
 import { LogoutInterceptor } from './interceptors/logout.interceptor';
 import { PreviewComponent } from './components/resume/preview/preview.component';
+import { ViewResumeComponent } from './components/public/view-resume/view-resume.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { PreviewComponent } from './components/resume/preview/preview.component'
     LoginComponent,
     RegisterComponent,
     PreviewComponent,
+    ViewResumeComponent,
   ],
   imports: [
     HttpClientModule,
